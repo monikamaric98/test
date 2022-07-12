@@ -15,6 +15,17 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+
+                    <h1 class="text text-primary">
+                        <br>
+                        Vaši podaci:</h1>
+                        <br>
+
+                       <p> {{ auth()->user()->name}} <br>
+                        {{ auth()->user()->email}} <br>
+                           Registrirani: {{ auth()->user()->created_at->format('d.m.Y.') }} </p>
+
                 </div>
             </div>
         </div>
