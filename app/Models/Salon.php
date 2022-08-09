@@ -14,6 +14,7 @@ class Salon extends Model
         'lokacija',
         'kontakt',
         'user_id',
+        'image',
     ];
 
     public function user()

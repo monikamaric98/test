@@ -33,13 +33,22 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @guest
+                        @else
+                            @if(auth()->user()->role == "Superadmin")
                         <li class="nav-item">
                             <a class="nav-link" href="/korisnici"> Administracija </a>
                         </li>
+                            @endif
+                        @endguest
                         <li class="nav-item">
                             <a class="nav-link" href="/saloni"> Svi saloni </a>
 
                         </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/termini"> Termini </a>
+
+                            </li>
 
                     </ul>
 

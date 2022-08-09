@@ -18,6 +18,9 @@ class UserController extends Controller
 
     public function index()
     {
+        if(auth()->user()->role != "Superadmin"){
+            abort('403', 'Nema pristupa ovom dijelu sustava!');
+        }
         $user = User::with('salons')->orderByDesc('created_at')->paginate(10);
         $salons = Salon::all();
         $number = User::query()->count();

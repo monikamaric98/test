@@ -68,7 +68,7 @@
 
 <style>
     #slika {
-        background-image: linear-gradient(whitesmoke, pink);
+
         border-radius: 15px;
     }
 </style>

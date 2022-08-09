@@ -42,6 +42,11 @@
                             <div class="card mb-3" id="oglasikartice">
                                 <div class="row g-0">
                                     <div class="col-md-4">
+                                        <a href="/saloni{{ $salon->id }}" style="text-decoration: none">
+
+                                        <img class="ms-4"
+                                             src="/storage/{{ $salon->image }}" id="imgshadow" style="height: 300px; width: 300px; padding: 5px">
+                                        </a>
 
                                     </div>
                                     <div class="col-md-8">
@@ -76,7 +81,7 @@
 
                     <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <form method="POST" action="{{ route('salons.add') }}">
+                                <form method="POST" action="{{ route('salons.add') }}" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="modal-dialog">
@@ -120,6 +125,9 @@
                                                     @enderror
 
                                                 </div>
+                                                <label for="image" class="col-md-4 col-form-label">Dodajte sliku</label>
+
+                                                <input type="file" class="form-control-file" id = "image" name="image">
 
                                             </div>
                                             <div class="modal-footer">

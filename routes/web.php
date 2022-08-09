@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SalonController;
+use App\Http\Controllers\TerminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,4 +37,12 @@ Route::put('/user/update/{user}', [UserController::class, 'changerole']);
 
 Route::get('/saloni', [SalonController::class, 'index']);
 Route::post('/addsalon', [SalonController::class, 'add'])->name('salons.add');
+Route::get('/saloni{salon}', [SalonController::class, 'show']);
+Route::get('/salon{salon}edit', [SalonController::class, 'edit'])->name('salons.edit');
+Route::put('/saloni/update/{salon}', [SalonController::class, 'update']);
+Route::get('/saloni/delete/{id}', [SalonController::class, 'delete'])->name('salons.delete');
+
+Route::get('/termini', [TerminController::class, 'index']);
+Route::post('/addtermin', [TerminController::class, 'create'])->name('termins.add');
+
 
