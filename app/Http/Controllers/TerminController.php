@@ -8,6 +8,8 @@ use DB;
 use App\Models\Salon;
 use App\Models\ServiceType;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
+
 
 
 class TerminController extends Controller
@@ -26,6 +28,18 @@ class TerminController extends Controller
 
         return View('termini.index', ["termins"=>$termin],
             compact('termin', 'salons', 'types', 'users'));
+    }
+
+    public function mojitermini(Salon $salon)
+    {
+        $termin = Termin::query()->orderByDesc('vrijeme_termina')
+            ->where('salon_id', '=', $salon->id)->paginate(10);
+
+        $types = ServiceType::all();
+        $users = User::all();
+        $naziv = Salon::query()->where('user_id', '=', auth()->user()->id)->first();
+        return View('mojitermini.index', ["termins"=>$termin],
+            compact('termin', 'types', 'users', 'salon', 'naziv'));
     }
 
     /**
@@ -102,14 +116,33 @@ class TerminController extends Controller
         //
     }
 
+    public function termindelete(Termin $termin)
+    {
+        $salons = Salon::all();
+        $types = ServiceType::all();
+        $users = User::all();
+        return view("termini.deletetermin", compact('termin', 'salons', 'types', 'users'));
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\termin  $termin
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function destroy(termin $termin)
+    public function destroy($id)
     {
-        //
+        $termin = Termin::find($id);
+
+        if (auth()->user()->id !== $termin->user_id
+            && auth()->user()->role !== 'Superadmin'
+            && auth()->user()->role !== 'Vlasnik'
+            && !(Gate::allows('delete-posts'))) {
+            abort('403', "Nemate ovlasti za brisanje ovog termina!");
+        }
+
+        DB::table('termins')->where("id", $id)->delete();
+        return redirect('/termini')->with('success', 'Uspješno ste otkazali termin');
     }
 }

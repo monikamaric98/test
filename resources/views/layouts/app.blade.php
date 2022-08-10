@@ -34,7 +34,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @guest
-                        @else
+                            @else
                             @if(auth()->user()->role == "Superadmin")
                         <li class="nav-item">
                             <a class="nav-link" href="/korisnici"> Administracija </a>
@@ -49,7 +49,14 @@
                                 <a class="nav-link" href="/termini"> Termini </a>
 
                             </li>
-
+                            @guest
+                                @else
+                                @if(auth()->user()->role == "Vlasnik")
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/mojitermini"> Moji termini </a>
+                                    </li>
+                                @endif
+                            @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -43,6 +43,8 @@ Route::put('/saloni/update/{salon}', [SalonController::class, 'update']);
 Route::get('/saloni/delete/{id}', [SalonController::class, 'delete'])->name('salons.delete');
 
 Route::get('/termini', [TerminController::class, 'index']);
+Route::get('/mojitermini', [TerminController::class, 'mojitermini']);
 Route::post('/addtermin', [TerminController::class, 'create'])->name('termins.add');
-
+Route::get('/termindelete{termin}', [TerminController::class, 'termindelete']);
+Route::get('/termin/delete/{id}', [TerminController::class, 'destroy'])->name('termin.delete');
 

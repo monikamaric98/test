@@ -17,4 +17,19 @@ class Termin extends Model
         'salon_id',
         'user_id',
     ];
+
+    public function salons()
+    {
+        return $this->hasOne(Salon::class, 'id', 'salon_id');
+    }
+
+    public function users()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function types()
+    {
+        return $this->hasOne(ServiceType::class, 'id', 'service_type_id');
+    }
 }

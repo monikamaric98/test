@@ -48,12 +48,15 @@
                                 <table class="table table-striped table-valign-middle">
                                     <thead>
                                     <tr>
-                                        <th>Vrijeme</th>
                                         <th>Datum</th>
+                                        <th>Vrijeme</th>
                                         <th>Kontakt</th>
                                         <th>Tip servisa</th>
                                         <th>Salon</th>
                                         <th>Klijent</th>
+
+                                        <th>Brisanje</th>
+
 
                                     </tr>
                                     </thead>
@@ -61,11 +64,10 @@
                                     @foreach($termins as $termin)
                                         <tr>
                                             <td>
-
-                                                {{ $termin->vrijeme_termina }}
+                                                {{  Carbon\Carbon::parse($termin->datum_termina)->format('d.m.Y.') }}
                                             </td>
                                             <td>
-                                                {{  Carbon\Carbon::parse($termin->datum_termina)->format('d.m.Y.') }}
+                                                {{ $termin->vrijeme_termina }}
                                             </td>
                                             <td>
                                                 {{ $termin->kontakt }}
@@ -91,6 +93,12 @@
                                                         {{ $s->name}}
                                                     @endif
                                                 @endforeach
+                                            </td>
+                                            <td>
+                                                @if(auth()->user()->id == $termin->user_id
+                                                || auth()->user()->role == "Superadmin")
+                                                    <a href="/termindelete{{$termin->id}}" class="btn btn-danger">Obriši</a>
+                                                @endif
                                             </td>
 
                                         </tr>
