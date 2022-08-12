@@ -9,7 +9,7 @@
                 <div class="form-group row">
 
                     <div class = "row">
-                        <h1 class="text text-danger">Jeste li sigurni da želite obrisati ovaj termin?</h1>
+                        <h1 class="text text-danger">Jeste li sigurni da želite otkazati ovaj termin?</h1>
                     </div>
                     <br><br><br>
 
@@ -58,31 +58,20 @@
 
                         </div>
 
-                        <!--<div class="form-group">
-                            <label for="salon_id">Salon</label>
-                            <select
-                                class="form-control" name="salon_id" id="salon_id">
-                                @foreach($salons as $t)
-                                    <option value="{{$t->id}}">
+
+
+                    <!-- <div class="form-group">
+                        <label for="service_type_id">Tip servisa</label>
+                        <select
+                            class="form-control" name="service_type_id" id="service_type_id">
+@foreach($types as $t)
+                        <option value="{{$t->id}}">
                                         {{$t->naziv}}
-                                    </option>
-                                @endforeach
+                            </option>
+@endforeach
 
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="service_type_id">Tip servisa</label>
-                            <select
-                                class="form-control" name="service_type_id" id="service_type_id">
-                                @foreach($types as $t)
-                                    <option value="{{$t->id}}">
-                                        {{$t->naziv}}
-                                    </option>
-                                @endforeach
-
-                            </select>
-                        </div>-->
+                        </select>
+                    </div>-->
                     </div>
 
                     <br>
@@ -90,7 +79,7 @@
 
                         <br>
 
-                        <a href="{{ route("termin.delete", $termin->id) }}" class = "btn btn-danger">Obriši termin</a>
+                        <a href="{{ route("termins.change", $termin->id) }}" class = "btn btn-danger">Otkaži</a>
 
                         <a href="/termini" class="btn btn-secondary"> Odustani </a>
                     </div>

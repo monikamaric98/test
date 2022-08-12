@@ -38,7 +38,6 @@
                                         <th>Vrijeme</th>
                                         <th>Kontakt</th>
                                         <th>Tip servisa</th>
-                                        <th>Salon</th>
                                         <th>Klijent</th>
 
                                         <th>Brisanje</th>
@@ -66,13 +65,7 @@
                                                 @endforeach
                                             </td>
 
-                                            <td>
-                                                @foreach($salons as $s)
-                                                    @if($termin->salon_id == $s->id)
-                                                        {{ $s->naziv }}
-                                                    @endif
-                                                @endforeach
-                                            </td>
+
                                             <td>
                                                 @foreach($users as $s)
                                                     @if($termin->user_id == $s->id)

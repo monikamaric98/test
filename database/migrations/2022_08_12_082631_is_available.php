@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTerminsTable extends Migration
+class IsAvailable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateTerminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('termins', function (Blueprint $table) {
-            $table->id();
-            $table->time('vrijeme_termina');
-            $table->date('datum_termina');
-            $table->string('kontakt')->nullable();
-            $table->timestamps();
+        Schema::table('termins', function ($table) {
+            $table->boolean('isAvailable');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateTerminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('termins');
+        Schema::table('termins', function($table) {
+            $table->dropColumn('isAvailable');
+        });
     }
 }

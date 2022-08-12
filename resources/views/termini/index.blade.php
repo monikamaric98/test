@@ -29,9 +29,11 @@
 
 
                                 <!-- Button trigger modal -->
+                                @if(auth()->user()->role == "Vlasnik")
                                 <button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Dodaj novi termin
                                 </button>
+                                @endif
 
                                 <!-- Modal -->
 
@@ -48,14 +50,17 @@
                                 <table class="table table-striped table-valign-middle">
                                     <thead>
                                     <tr>
+                                        <th>Salon</th>
                                         <th>Datum</th>
                                         <th>Vrijeme</th>
                                         <th>Kontakt</th>
                                         <th>Tip servisa</th>
-                                        <th>Salon</th>
                                         <th>Klijent</th>
-
+                                        <th>Dostupnost</th>
+                                        <th>Zauzmi termin</th>
+                                        @if(auth()->user()->role == "Vlasnik")
                                         <th>Brisanje</th>
+                                        @endif
 
 
                                     </tr>
@@ -63,6 +68,15 @@
                                     <tbody>
                                     @foreach($termins as $termin)
                                         <tr>
+                                            <td class="text text-primary">
+                                                @foreach($salons as $s)
+                                                    @if($termin->salon_id == $s->id)
+                                                        <a href="/saloni{{$s->id}}">
+                                                        {{ $s->naziv }}
+                                                        </a>
+                                                    @endif
+                                                @endforeach
+                                            </td>
                                             <td>
                                                 {{  Carbon\Carbon::parse($termin->datum_termina)->format('d.m.Y.') }}
                                             </td>
@@ -80,13 +94,7 @@
                                                 @endforeach
                                             </td>
 
-                                            <td>
-                                                @foreach($salons as $s)
-                                                    @if($termin->salon_id == $s->id)
-                                                        {{ $s->naziv }}
-                                                    @endif
-                                                @endforeach
-                                            </td>
+
                                             <td>
                                                 @foreach($users as $s)
                                                     @if($termin->user_id == $s->id)
@@ -94,9 +102,32 @@
                                                     @endif
                                                 @endforeach
                                             </td>
+
+                                                @if( $termin->isAvailable === 0 )
+                                                    <td class="text text-success">
+                                                        <i class="fa-solid fa-circle-check"></i>
+                                                        Dostupno
+                                                    </td>
+                                                <td>
+                                                    <a href="/taketermin{{$termin->id}}" class="btn btn-success">
+                                                        Zauzmi
+                                                    </a>
+                                                </td>
+                                                @else
+                                                    <td class="text text-danger">
+                                                        <i class="fa-solid fa-circle-xmark"></i>
+                                                        Zauzeto
+                                                    </td>
+                                                <td>
+                                                    <a href="/otkazitermin{{$termin->id}}" class="btn btn-danger">
+                                                        Otkaži
+                                                    </a>
+                                                </td>
+                                                @endif
+
                                             <td>
-                                                @if(auth()->user()->id == $termin->user_id
-                                                || auth()->user()->role == "Superadmin")
+                                                @if(auth()->user()->salon_id == $termin->salon_id
+                                                && auth()->user()->role == "Vlasnik")
                                                     <a href="/termindelete{{$termin->id}}" class="btn btn-danger">Obriši</a>
                                                 @endif
                                             </td>
@@ -147,7 +178,7 @@
 
                                             </div>
 
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <label for="kontakt">Kontakt</label>
                                                 <input type="kontakt" class="form-control @error('kontakt') is-invalid @enderror" name="kontakt" id="kontakt" placeholder="Unesite nacin na koji vas mogu korisnici kontaktirati">
 
@@ -170,7 +201,7 @@
                                                     @endforeach
 
                                                 </select>
-                                            </div>
+                                            </div>-->
 
                                             <div class="form-group">
                                                 <label for="service_type_id">Tip servisa</label>

@@ -30,16 +30,16 @@ class TerminController extends Controller
             compact('termin', 'salons', 'types', 'users'));
     }
 
-    public function mojitermini(Salon $salon)
+    public function mojitermini()
     {
         $termin = Termin::query()->orderByDesc('vrijeme_termina')
-            ->where('salon_id', '=', $salon->id)->paginate(10);
+            ->where('salon_id', '=', auth()->user()->salon_id)->paginate(10);
 
         $types = ServiceType::all();
         $users = User::all();
         $naziv = Salon::query()->where('user_id', '=', auth()->user()->id)->first();
         return View('mojitermini.index', ["termins"=>$termin],
-            compact('termin', 'types', 'users', 'salon', 'naziv'));
+            compact('termin', 'types', 'users', 'naziv'));
     }
 
     /**
@@ -52,18 +52,16 @@ class TerminController extends Controller
         $data = request()->validate([
             'datum_termina' => 'required',
             'vrijeme_termina' => 'required',
-            'kontakt' => 'required',
             'service_type_id' => 'required',
-            'salon_id' => 'required',
         ]);
 
         Termin::create([
             'datum_termina' => $data['datum_termina'],
             'vrijeme_termina' => $data['vrijeme_termina'],
-            'kontakt' => $data['kontakt'],
+            //'kontakt' => $data['kontakt'],
             'service_type_id' => $data['service_type_id'],
-            'salon_id' => $data['salon_id'],
-            'user_id' => auth()->user()->id,
+            'salon_id' => auth()->user()->salon_id,
+            //'user_id' => auth()->user()->id,
 
         ]);
 
@@ -143,6 +141,46 @@ class TerminController extends Controller
         }
 
         DB::table('termins')->where("id", $id)->delete();
-        return redirect('/termini')->with('success', 'Uspješno ste otkazali termin');
+        return redirect('/termini')->with('success', 'Uspješno ste obrisali termin');
+    }
+
+    public function taketermin(Termin $termin)
+    {
+        $salons = Salon::all();
+        $types = ServiceType::all();
+        $users = User::all();
+        return view("termini.taketermin", compact('termin', 'salons', 'types', 'users'));
+    }
+
+    public function changeIsAvailable(Request $request, $id)
+    {
+        $termin = Termin::find($id);
+        $termin->isAvailable = 1;
+        $termin->user_id = auth()->user()->id;
+        $termin->kontakt = $request->input('kontakt');
+
+        $termin->update();
+
+        return redirect('/termini')->with('success', 'Uspješno ste zauzeli ovaj termin.');
+    }
+
+    public function otkazitermin(Termin $termin)
+    {
+        $salons = Salon::all();
+        $types = ServiceType::all();
+        $users = User::all();
+        return view("termini.otkazitermin", compact('termin', 'salons', 'types', 'users'));
+    }
+
+    public function changeAvailability($id)
+    {
+
+        $termin = Termin::find($id);
+        $termin->isAvailable = 0;
+        $termin->user_id = NULL;
+        $termin->kontakt = NULL;
+        $termin->save();
+
+        return redirect('/termini')->with('success', 'Uspješno ste ozkazali ovaj termin.');
     }
 }

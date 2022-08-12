@@ -27,10 +27,11 @@
 
                             <div class="col">
 
-
+                                @if(auth()->user()->role == "Vlasnik")
                                 <button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Dodaj novi salon
                                 </button>
+                                @endif
 
                             </div>
                         </div>

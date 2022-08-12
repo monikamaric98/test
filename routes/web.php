@@ -47,4 +47,8 @@ Route::get('/mojitermini', [TerminController::class, 'mojitermini']);
 Route::post('/addtermin', [TerminController::class, 'create'])->name('termins.add');
 Route::get('/termindelete{termin}', [TerminController::class, 'termindelete']);
 Route::get('/termin/delete/{id}', [TerminController::class, 'destroy'])->name('termin.delete');
+Route::get('/taketermin{termin}', [TerminController::class, 'taketermin']);
+Route::put('/termins/isAvailable/{id}', [TerminController::class, 'changeIsAvailable']);
+Route::get('/otkazitermin{termin}', [TerminController::class, 'otkazitermin']);
+Route::get('/termins/otkazi/{id}', [TerminController::class, 'changeAvailability'])->name('termins.change');
 

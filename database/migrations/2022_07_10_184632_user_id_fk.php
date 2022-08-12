@@ -14,7 +14,7 @@ class UserIdFk extends Migration
     public function up()
     {
         Schema::table('termins', function ($table) {
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->nullable();
 
         });
     }
