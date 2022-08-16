@@ -39,9 +39,9 @@
                                     </span>
                                 @enderror
                             </div>
-                            <small class="text-danger"> Pažljivo! Ako promijenite ulogu korisnika
+                            <!--<small class="text-danger"> Pažljivo! Ako promijenite ulogu korisnika
                                 iz user u ulogu admina, svi oglasi koje ima će biti obrisani!
-                            </small>
+                            </small>-->
                             <br>
                         </div>
 

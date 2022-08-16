@@ -25,12 +25,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('korisnici', [UserController::class, 'index']);
+Route::get('/searchuser/', [UserController::class, 'search'])->name('searchuser');
 
 Route::post('/users/add', [UserController::class, 'addUser'])->name('users.add');
 
 Route::get('/userdelete{user}', [UserController::class, 'userdelete']);
 Route::get('/users/delete/{id}', [UserController::class, 'deleteuser'])->name('user.delete');
-
 
 Route::get('/user{user}edit', [UserController::class, 'editrole'])->name('user.editrole');
 Route::put('/user/update/{user}', [UserController::class, 'changerole']);
@@ -51,4 +51,5 @@ Route::get('/taketermin{termin}', [TerminController::class, 'taketermin']);
 Route::put('/termins/isAvailable/{id}', [TerminController::class, 'changeIsAvailable']);
 Route::get('/otkazitermin{termin}', [TerminController::class, 'otkazitermin']);
 Route::get('/termins/otkazi/{id}', [TerminController::class, 'changeAvailability'])->name('termins.change');
+Route::get('/search/', [TerminController::class, 'search'])->name('search');
 

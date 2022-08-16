@@ -20,26 +20,31 @@
                             </div>
                         @endif
                         <div class="row">
-                            <div class="col-9">
-
-                            </div>
 
 
-                            <div class="col-3">
-
-
-                                <!-- Button trigger modal -->
+                                <!-- Button trigger modal
                                 @if(auth()->user()->role == "Vlasnik")
                                 <button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Dodaj novi termin
                                 </button>
                                 @endif
 
-                                <!-- Modal -->
+                                 -->
+                                    <div class="col">
+                                        <form action="{{ route('search') }}" method="GET" role="search">
 
-                            </div>
-                        </div>
-                        <br><br><br>
+                                            <div class="input-group">
+                                                <div class="form-outline">
+                                                    <input type="text" name="search" placeholder="Pretraži..." class="form-control" />
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                </button>
+                                            </div>
+                                            <p><small class="text-muted">Pretraži po nazivu salona...</small></p>
+                                        </form>
+                                    </div>
+                        <br><br>
 
                         <div class="card">
                             <div class="card-header border-0">
@@ -66,7 +71,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($termins as $termin)
+                                    @if($termins->isNotEmpty())
+                                        @foreach($termins as $termin)
                                         <tr>
                                             <td class="text text-primary">
                                                 @foreach($salons as $s)
@@ -125,7 +131,7 @@
                                                 </td>
                                                 @endif
 
-                                            <td>
+                                         <td>
                                                 @if(auth()->user()->salon_id == $termin->salon_id
                                                 && auth()->user()->role == "Vlasnik")
                                                     <a href="/termindelete{{$termin->id}}" class="btn btn-danger">Obriši</a>
@@ -134,6 +140,13 @@
 
                                         </tr>
                                     @endforeach
+                                    @else
+                                        <div>
+                                            <h2 class="text text-danger">
+                                                Taj salon nema termina ili ne postoji salon sa takvim nazivom.
+                                            </h2>
+                                        </div>
+                                    @endif
                                     </tbody>
                                 </table>
                                 <div class="d-flex justify-content-center">

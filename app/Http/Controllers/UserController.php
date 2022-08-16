@@ -42,22 +42,25 @@ class UserController extends Controller
         return redirect('/korisnici')->with('success', 'Uspješno ste obrisali korisnika.');
     }
 
-    /*
+
     public function search(Request $request)
     {
-        if (auth()->user()->role != "Admin"){
-            abort('403', 'Samo admin ima pristup ovom dijelu sustava.');
+        if (auth()->user()->role != "Superadmin"){
+            abort('403', 'Samo superadmin ima pristup ovom dijelu sustava.');
         }
         $search = $request->input('search');
 
         $users = User::query()
+            ->with('salons')
             ->where('name', 'LIKE', "%{$search}%")
             ->orWhere('email', 'LIKE', "%{$search}%")
             ->orderByDesc('id')
-            ->get();
+            ->paginate(10);
+        $salons = Salon::all();
 
-        return view('korisnici.search', compact('users', 'search'));
-    } */
+
+        return view('korisnici.search', compact('users', 'search', 'salons'));
+    }
 
 
     public function addUser(Request $request)

@@ -32,14 +32,35 @@ class TerminController extends Controller
 
     public function mojitermini()
     {
+        $salons = Salon::query()->where('user_id', '=', auth()->user()->id)->get();
+
         $termin = Termin::query()->orderByDesc('vrijeme_termina')
-            ->where('salon_id', '=', auth()->user()->salon_id)->paginate(10);
+            ->where('salon_id', '=', auth()->user()->id)->paginate(10);
 
         $types = ServiceType::all();
         $users = User::all();
-        $naziv = Salon::query()->where('user_id', '=', auth()->user()->id)->first();
         return View('mojitermini.index', ["termins"=>$termin],
-            compact('termin', 'types', 'users', 'naziv'));
+            compact('termin', 'types', 'users', 'salons'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $terminsz = Termin::query()
+            ->where('salon_id', 'LIKE', "%{$search}%")
+            ->orderByDesc('datum_termina')
+            ->get();
+
+        $termins = Termin::whereHas('salons', function($q) use($search) {
+        $q->where('naziv', 'like', '%' . $search . '%');
+        })->orderByDesc('datum_termina')->get();
+
+        $salons = Salon::all();
+        $types = ServiceType::all();
+        $users = User::all();
+
+        return view('termini.search',   compact('termins', 'salons', 'types', 'users', 'search'));
     }
 
     /**
@@ -53,6 +74,7 @@ class TerminController extends Controller
             'datum_termina' => 'required',
             'vrijeme_termina' => 'required',
             'service_type_id' => 'required',
+            'salon_id' => 'required',
         ]);
 
         Termin::create([
@@ -60,7 +82,8 @@ class TerminController extends Controller
             'vrijeme_termina' => $data['vrijeme_termina'],
             //'kontakt' => $data['kontakt'],
             'service_type_id' => $data['service_type_id'],
-            'salon_id' => auth()->user()->salon_id,
+            'salon_id' => $data['salon_id'],
+            //'salon_id' => auth()->user()->salon_id,
             //'user_id' => auth()->user()->id,
 
         ]);
