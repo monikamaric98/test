@@ -53,6 +53,7 @@
                                     <h3 class="card-title text-primary">Termini</h3>
 
                                 </div>
+                                @if($termins->isNotEmpty())
                                 <div class="card-body table-responsive p-0">
                                     <table class="table table-striped table-valign-middle">
                                         <thead>
@@ -64,9 +65,11 @@
                                             <th>Tip servisa</th>
                                             <th>Klijent</th>
                                             <th>Dostupnost</th>
-                                            <th>Zauzmi termin</th>
-                                        @if(auth()->user()->role == "Vlasnik")
-                                            <th>Brisanje</th>
+                                            @if(auth()->user()->role == "User")
+                                                <th>Zauzmi termin</th>
+                                            @endif
+                                            @if(auth()->user()->role == "Vlasnik")
+                                                <th>Brisanje</th>
                                             @endif
 
 
@@ -115,29 +118,43 @@
                                                         <i class="fa-solid fa-circle-check"></i>
                                                         Dostupno
                                                     </td>
-                                                    <td>
-                                                        <a href="/taketermin{{$termin->id}}" class="btn btn-success">
-                                                            Zauzmi
-                                                        </a>
-                                                    </td>
+
+                                                    @if(auth()->user()->role == "User")
+                                                        <td>
+                                                            <a href="/taketermin{{$termin->id}}" class="btn btn-success">
+                                                                Zauzmi
+                                                            </a>
+                                                        </td>
+                                                    @endif
                                                 @else
                                                     <td class="text text-danger">
                                                         <i class="fa-solid fa-circle-xmark"></i>
                                                         Zauzeto
                                                     </td>
-                                                    <td>
-                                                        <a href="/otkazitermin{{$termin->id}}" class="btn btn-danger">
-                                                            Otkaži
-                                                        </a>
-                                                    </td>
-                                            @endif
 
-                                            <td>
-                                                @if(auth()->user()->salon_id == $termin->salon_id
-                                                && auth()->user()->role == "Vlasnik")
-                                                <a href="/termindelete{{$termin->id}}" class="btn btn-danger">Obriši</a>
+                                                    @if(auth()->user()->id == $termin->user_id)
+                                                        <td>
+                                                            <a href="/otkazitermin{{$termin->id}}" class="btn btn-danger">
+                                                                Otkaži
+                                                            </a>
+                                                        </td>
+                                                    @endif
+
                                                 @endif
-                                                </td>
+
+
+                                                @if(auth()->user()->id == $termin->salons->user_id
+                                                && auth()->user()->role == "Vlasnik")
+                                                    <td>
+                                                        <a href="/termindelete{{$termin->id}}" class="btn btn-danger">Obriši</a>
+                                                    </td>
+                                                @else
+                                                    <td>
+                                                        <p hidden>no</p>
+                                                    </td>
+
+                                                @endif
+
 
                                             </tr>
                                         @endforeach
@@ -146,6 +163,11 @@
 
 
                                 </div>
+                                @else
+                                    <h2 class="text text-danger">
+                                        Taj salon nema termina ili ne postoji salon sa takvim nazivom.
+                                    </h2>
+                                @endif
                             </div>
 
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

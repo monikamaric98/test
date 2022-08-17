@@ -36,6 +36,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @guest
+
                             @else
                             @if(auth()->user()->role == "Superadmin")
                         <li class="nav-item">
@@ -59,6 +60,10 @@
                                     </li>
                                 @endif
                             @endguest
+                            <li class="nav-item">
+                                <a class="nav-link" href="/kontakt"> Kontakt </a>
+
+                            </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

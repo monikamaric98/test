@@ -21,7 +21,10 @@ class TerminController extends Controller
      */
     public function index()
     {
-        $termin = Termin::query()->orderByDesc('vrijeme_termina')->paginate(10);
+        $termin = Termin::query()
+            ->where('datum_termina', '>=', \Carbon\Carbon::now())
+            ->orderBy('datum_termina')->orderBy('vrijeme_termina')
+            ->paginate(10);
         $salons = Salon::all();
         $types = ServiceType::all();
         $users = User::all();
@@ -32,10 +35,13 @@ class TerminController extends Controller
 
     public function mojitermini()
     {
+        if(auth()->user()->role != "Vlasnik"){
+            abort('403', 'Nemate pristup ovom dijelu sustava!');
+        }
+
         $salons = Salon::query()->where('user_id', '=', auth()->user()->id)->get();
 
-        $termin = Termin::query()->orderByDesc('vrijeme_termina')
-            ->where('salon_id', '=', auth()->user()->id)->paginate(10);
+        $termin = Termin::query()->orderBy('datum_termina')->orderBy('vrijeme_termina')->paginate(10);
 
         $types = ServiceType::all();
         $users = User::all();
@@ -88,7 +94,7 @@ class TerminController extends Controller
 
         ]);
 
-        return redirect("/termini")->with('success','Uspješno ste dodali novi termin.');
+        return redirect("/mojitermini")->with('success','Uspješno ste dodali novi termin.');
 
     }
 

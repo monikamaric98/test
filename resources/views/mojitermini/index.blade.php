@@ -21,13 +21,18 @@
                                 </ul>
                             </div>
                         @endif
+                            @if($salons->isNotEmpty())
                             @foreach($salons as $n)
-                                <a href="http://onpoint.test/search?search={{$n->naziv}}">
+                                <a href="http://onpoint.test/search?search={{$n->naziv}}" class="h3">
                                     {{ $n->naziv }} <br>
                                 </a>
                             @endforeach
+                                @else
+                                Nemate ni jedan salon. Dodajte ovdje: <br>
+                                <a href="/saloni" class="btn btn-success"><i class="fa-solid fa-plus"></i></a>
+                                @endif
 
-                            <br><br><br>
+                            <br>
 
                             @if(auth()->user()->role == "Vlasnik")
                                 <button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -37,7 +42,7 @@
 
                         </div>
 
-                       <!-- <div class="card">
+                       <div class="card">
                             <div class="card-header border-0">
                                 <h3 class="card-title text-primary">Termini</h3>
 
@@ -52,15 +57,16 @@
                                         <th>Kontakt</th>
                                         <th>Tip servisa</th>
                                         <th>Klijent</th>
-
                                         <th>Brisanje</th>
 
 
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($termins as $termin)
-                                        <tr>
+                                        @foreach($termins as $termin)
+                                            @if(auth()->user()->id == $termin->salons->user_id)
+
+                                                <tr>
                                             <td class="text text-primary">
                                                 @foreach($salons as $s)
                                                     @if($termin->salon_id == $s->id)
@@ -104,15 +110,19 @@
                                             </td>
 
                                         </tr>
+                                        @endif
                                     @endforeach
+
                                     </tbody>
                                 </table>
+
                                 <div class="d-flex justify-content-center">
                                     {{$termins->links('pagination::bootstrap-4')}}
                                 </div>
 
+
                             </div>
-                        </div>-->
+                        </div>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <form method="POST" action="{{ route('termins.add') }}">
                             @csrf

@@ -129,9 +129,9 @@ class UserController extends Controller
 
     public function editrole(User $user)
     {
-       /* if(auth()->user()->role != "Admin"){
+       if(auth()->user()->role != "Superadmin"){
             return abort('403', "Niste Admin!");
-        }*/
+        }
         return view("korisnici.rolechange", compact('user'));
     }
 
