@@ -25,8 +25,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'On Point') }}
+                <a class="navbar-brand" href="{{ url('/') }}" style="color: hotpink">
+                    On Point
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -36,7 +36,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @guest
-
                             @else
                             @if(auth()->user()->role == "Superadmin")
                         <li class="nav-item">
@@ -59,6 +58,7 @@
                                         <a class="nav-link" href="/mojitermini"> Moji termini </a>
                                     </li>
                                 @endif
+
                             @endguest
                             <li class="nav-item">
                                 <a class="nav-link" href="/kontakt"> Kontakt </a>
@@ -105,7 +105,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4" style="background-color: rgba(248, 199, 224, 0.95); min-height:100%">
             @yield('content')
         </main>
     </div>

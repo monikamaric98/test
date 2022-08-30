@@ -103,25 +103,20 @@
 
             </section>
 
-            <h1 class="text text-light text-center mt-5 font-weight-bold">O nama</h1>
+            <h1 class="text text-dark text-center mt-5 font-weight-bold">O nama</h1>
 
             <div class="card mb-3 mt-3" style="max-width: 550px;">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img style="height: 300px;padding: 5px"
-                             src="Ivona.jpg" class="img-fluid rounded-start" alt="...">
+                             src="Ivana.jpeg" class="img-fluid rounded-start" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">Ivona Krezić</h5>
+                            <h5 class="card-title">Ivana Vasilj</h5>
                             <p class="card-text">
                                 Studentica 3. godine informatike
-                                Imam 22 godine, dolazim iz Mostara.
-                                Slobodno vrijeme nastojim iskoristiti sto
-                                efektivnije, tako da se bavim sportom,
-                                vozim biciklo, boksam, družiti se sa
-                                prijateljima, putujem, te učim
-                                uvijek nešto novo pretražujući internet.
+
                             </p>
                         </div>
                     </div>
@@ -132,17 +127,14 @@
                 <div class="row g-0">
                     <div class="col-md-5">
                         <img style="height: 260px;padding: 5px"
-                             src="Elizabeta.jpg" class="img-fluid rounded-start mt-2" alt="...">
+                             src="Monika.jpeg" class="img-fluid rounded-start mt-2" alt="...">
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">
-                            <h5 class="card-title">Elizabeta Miličević</h5>
+                            <h5 class="card-title">Monika Marić</h5>
                             <p class="card-text">
-                                Studentica 3. godine informatike
-                                Imam 22 godine, dolazim iz Kiseljaka.
-                                U slobodno vrijeme volim crtati, svirati klavir,
-                                čitati knjige i provoditi vrijeme sa svojim
-                                prijateljima.
+                                Studentica 3. godine informatike.
+
                             </p>
                         </div>
                     </div>

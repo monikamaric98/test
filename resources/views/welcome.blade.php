@@ -27,7 +27,7 @@
 <body class="antialiased">
 <nav class="navbar" style="height: 80px; background-color: white; margin-bottom: 80px" id="pocetak">
     <div class="container">
-        <a class="navbar-brand"  href="{{ url('/') }}">
+        <a class="navbar-brand"  href="{{ url('/') }}" style="color: hotpink">
             OnPoint
         </a>
         @if (Route::has('login'))
@@ -99,32 +99,6 @@
 
             </div>
 
-            <div class="info-box mb-3">
-                            <span class="info-box-icon">
-                                <a href="#o_projektu">
-                                    <i class="fa-solid fa-pager"></i>
-                                </a>
-                            </span>
-                <div class="info-box-content">
-                    <a href="#o_projektu">
-                        <span class="info-box-text">O našem projektu</span>
-                    </a>
-                </div>
-
-            </div>
-            <div class="info-box mb-3">
-                            <span class="info-box-icon">
-                                <a href="#tehnologije">
-                                    <i class="fa-solid fa-mobile"></i>
-                                </a>
-                            </span>
-                <div class="info-box-content">
-                    <a href="#tehnologije">
-                        <span class="info-box-text">Tehnologije</span>
-                    </a>
-                </div>
-
-            </div>
         </div>
 
     </div>
@@ -135,34 +109,29 @@
     <div class="row">
 
         <div class="col-lg-3 col-6">
+            <a href="/saloni">
             <div class="small-box">
                 <div class="inner">
                     <h3>{{ $salons }}</h3>
                     <p>Salona</p>
                 </div>
-                <div class="icon" id="ikona">
-                    <i class="fa-solid fa-rectangle-ad"></i>
-                </div>
-                <a href="/saloni" id="informacije">Više informacija
-                    <i class="fas fa-arrow-circle-right"></i>
-                </a>
+
+
             </div>
+            </a>
         </div>
 
         <div class="col-lg-3 col-6">
+            <a href="/termini">
 
             <div class="small-box ">
                 <div class="inner">
                     <h3>{{ $termins }}</h3>
                     <p>Termina</p>
                 </div>
-                <div class="icon" id="ikona">
-                    <i class="fa-solid fa-box"></i>
-                </div>
-                <a href="/termini" id="informacije">Više informacija
-                    <i class="fas fa-arrow-circle-right"></i>
-                </a>
+
             </div>
+            </a>
         </div>
 
         <div class="col-lg-3 col-6">
@@ -172,11 +141,7 @@
                     <h3>{{ $users }}</h3>
                     <p>Registriranih Korisnika</p>
                 </div>
-                <div class="icon" id="ikona">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-                <p id="informacije">Postani jedan od nas!
-                </p>
+
             </div>
         </div>
 
@@ -221,7 +186,7 @@
 
         </div>
         <div class="col-md-6">
-            <div class="card" style="background-color: rgba(248, 199, 224, 1); border-radius: 15px">
+            <!--<div class="card" style="background-color: rgba(248, 199, 224, 1); border-radius: 15px">
                 <div class="card-header">
                     <h3 class="card-title">Novi termini</h3>
                 </div>
@@ -246,30 +211,13 @@
                     <a href="/termini">Pogledaj sve termine</a>
                 </div>
 
-            </div>
+            </div>-->
         </div>
     </div>
 
-    <br><br><br><br>
+    <br><br>
 
-    <div id="pozzy">
-        <div class="text-center">
-            <h3 class="text" id="o_projektu"><br>O našem projektu:</h3>
-            <p id="text">
 
-                Cilj našeg projekta je napraviti stranicu za prodaju i kupovinu uređaja kao što su računala
-                , laptopi, mobiteli, te tableti. <br> Na ovoj web aplikaciji korisnici mogu
-                praviti svoje profile na kojima imaju mogućnost
-                vidjeti ili dodati oglase za nove ili korištene uređaje.
-
-            </p>
-            <br>
-            <h3 class="text" id="motivacija">Motivacija:</h3>
-            <p id="text">
-                Želimo testirati naše znanje i naučiti više o kreiranju stranica na internetu uz pomoć novih tehnologija.
-                <br><br><br>
-        </div>
-    </div>
 
     <br><br><br> <br>
     <h4 class="text" id="tehnologije">&nbsp;Tehnologije koje smo koristili u ovome projektu su:</h4>
@@ -307,16 +255,30 @@
 
         </div>
     </div>
+
+    <br><br><br>
+    <div id="pozzy">
+        <div class="text-center">
+            <h3 class="text" id="o_projektu"><br>O našem projektu:</h3>
+            <p id="text">
+
+                Ovaj sustav će nuditi vlasnicima frizerskih i kozmetičkih salona da naprave profile , te izlistaju svoju ponudu .
+                <br>Kao što su vrste tretmana koje nude, cijene , kratki opis , slobodne termine te lokaciju.
+                <br>Dok gosti koji posjećuju sustav će moći u vrlo kratkom vremenskom roku pronaći odgovarajući termin za uslugu koju traže , s odgovarajućom cijenom i lokacijom.
+                Prednost je što će moći odjednom više usluga rezervirati što znatno štedi vrijeme i omogućava iz topline vlastitog doma obaviti potrebne stvari.
+            </p>
+
+
+            <br>
+            <h3 class="text" id="motivacija">Motivacija:</h3>
+            <p id="text">
+                Želimo olakšati i uljepšati svakodnevni život svim korisnicima koji uvijek žele biti "on point".
+                <br><br><br>
+        </div>
+    </div>
 </div>
 <br>
-<!--<footer class="footer text-light" style="padding-top: 8px">
-    <div class="container" id="footer2">
-        &copy; 2022 - OnPoint - <a href="/kontakt" style="color:lightblue; text-decoration:none" >Kontakt</a>
-        <a class="float-right" id="gore" href="#pocetak">
-            <i class="fa-solid fa-arrow-up" style="padding-left: 6px; padding-top: 4px"></i>
-        </a>
-    </div>
-</footer>-->
+
 </body>
 </html>
 <style>
@@ -340,7 +302,7 @@
     @media only screen and (min-width: 600px) {
         #pozzy {
             background-color: rgba(248, 199, 224, 1);
-            border-radius: 200px;
+
         }
 
         #text{

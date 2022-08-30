@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container" id="slika">
+    <div class="container">
         <div class="row">
             <div class="col-4">
 
@@ -91,16 +91,14 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text-danger" id="exampleModalLabel">
-                            Jeste li sigurni da želite obrisati ovaj oglas?
+                            Jeste li sigurni da želite obrisati ovaj salon?
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body align-center">
                         <table>
                             <tr>
-                                <td>
-                                    <img src="https://static.thenounproject.com/png/358467-200.png">
-                                </td>
+
                                 <td>
                                     <p class="text-danger"> Pažljivo! Ako ga obrišete, ne možete ga vratiti!</p>
                                 </td>

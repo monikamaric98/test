@@ -108,4 +108,7 @@
 
         border-radius: 15px;
     }
+     #visina{
+         min-height: 100%;
+     }
 </style>

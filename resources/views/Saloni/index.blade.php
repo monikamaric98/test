@@ -155,4 +155,7 @@
         border-radius: 15px;
         font-family: "Roboto", sans-serif;
     }
+     #visina{
+         min-height: 100%;
+     }
 </style>
