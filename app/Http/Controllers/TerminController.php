@@ -41,7 +41,10 @@ class TerminController extends Controller
 
         $salons = Salon::query()->where('user_id', '=', auth()->user()->id)->get();
 
-        $termin = Termin::query()->orderBy('datum_termina')->orderBy('vrijeme_termina')->paginate(10);
+        $termin = Termin::query()
+            ->where('datum_termina', '>=', \Carbon\Carbon::now())
+            ->orderBy('datum_termina')
+            ->orderBy('vrijeme_termina')->paginate(10);
 
         $types = ServiceType::all();
         $users = User::all();
