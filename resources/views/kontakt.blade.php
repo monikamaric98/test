@@ -109,7 +109,7 @@
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img style="height: 300px;padding: 5px"
-                             src="Ivana.jpg" class="img-fluid rounded-start" alt="...">
+                             src="/ivana.jpg" class="img-fluid rounded-start" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -127,7 +127,7 @@
                 <div class="row g-0">
                     <div class="col-md-5">
                         <img style="height: 260px;padding: 5px"
-                             src="Monika.jpg" class="img-fluid rounded-start mt-2" alt="...">
+                             src="/monika.jpg" class="img-fluid rounded-start mt-2" alt="...">
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">

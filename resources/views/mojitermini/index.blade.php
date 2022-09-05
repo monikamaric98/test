@@ -23,7 +23,8 @@
                         @endif
                             @if($salons->isNotEmpty())
                             @foreach($salons as $n)
-                                <a href="http://pzi082022.studenti.sumit.sum.ba/search?search={{$n->naziv}}" class="h3">
+                                <!--http://pzi082022.studenti.sumit.sum.ba/search?search=-->
+                                <a href="http://onpoint.test/search?search={{$n->naziv}}" class="h3">
                                     {{ $n->naziv }} <br>
                                 </a>
                             @endforeach

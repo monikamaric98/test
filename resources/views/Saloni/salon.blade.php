@@ -64,7 +64,7 @@
                         </tr>
                         <tr>
                             <th>
-                                Vlasnik oglasa:
+                                Vlasnik salona:
                             </th>
                             @foreach($user as $u)
                                 @if(auth()->user()->id == $salon->user_id)
