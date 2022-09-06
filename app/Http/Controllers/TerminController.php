@@ -57,13 +57,14 @@ class TerminController extends Controller
         $search = $request->input('search');
 
         $terminsz = Termin::query()
+            ->where('datum_termina', '>=', \Carbon\Carbon::now())
             ->where('salon_id', 'LIKE', "%{$search}%")
             ->orderByDesc('datum_termina')
             ->get();
 
         $termins = Termin::whereHas('salons', function($q) use($search) {
         $q->where('naziv', 'like', '%' . $search . '%');
-        })->orderByDesc('datum_termina')->get();
+        })->orderByDesc('datum_termina')->where('datum_termina', '>=', \Carbon\Carbon::now())->get();
 
         $salons = Salon::all();
         $types = ServiceType::all();

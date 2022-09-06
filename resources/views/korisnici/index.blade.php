@@ -72,7 +72,6 @@
                                             <th>E-mail</th>
                                             <th>Uloga</th>
                                             <th>Registracija</th>
-                                            <th>Salon</th>
                                             <th>Akcije</th>
 
                                         </tr>
@@ -93,15 +92,7 @@
                                                 <td>
                                                     {{ Carbon\Carbon::parse($user->created_at)->format('d.m.Y.') }}
                                                 </td>
-                                                <td>
-                                                    @foreach($salons as $s)
-                                                        @if($user->salon_id == $s->id)
-                                                            <a href="/saloni{{$s->id}}">
-                                                            {{ $s->naziv }}
-                                                            </a>
-                                                        @endif
-                                                    @endforeach
-                                                </td>
+
                                                 <td>
                                                     <a href="/user{{ $user->id }}edit" type="btn btn-success" class="btn btn-success mb-2">
                                                         Uloga

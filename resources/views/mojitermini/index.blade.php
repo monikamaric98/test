@@ -23,10 +23,10 @@
                         @endif
                             @if($salons->isNotEmpty())
                             @foreach($salons as $n)
-                                <!--http://pzi082022.studenti.sumit.sum.ba/search?search=-->
-                                <a href="http://onpoint.test/search?search={{$n->naziv}}" class="h3">
+                                <!--http://onpoint.test/search?search=-->
+                                <a href=" http://pzi082022.studenti.sumit.sum.ba/search?search={{$n->naziv}}" class="h3">
                                     {{ $n->naziv }} <br>
-                                </a>
+                                </a>        http://pzi082022.studenti.sumit.sum.ba/search?search=
                             @endforeach
                                 @else
                                 Nemate ni jedan salon. Dodajte ovdje: <br>

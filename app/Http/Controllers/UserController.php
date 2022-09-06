@@ -86,47 +86,6 @@ class UserController extends Controller
         }
     }
 
-    /*
-    public function edit(User $user)
-    {
-        if(auth()->user()->id !== $user->id){
-            return abort('403', "Niste vlasnik profila!");
-        }
-        return view("korisnici.profiledit", compact('user'));
-    }
-
-    public function update(Request $request, $id)
-    {
-
-        $user = User::find($id);
-
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-        ]);
-
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->location = $request->input('location');
-
-
-        if (request()->hasFile('profile_image')) {
-            $imagePath = request('profile_image')->store('uploads', 'public');
-
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
-            $image->save();
-
-            $user->profile_image = $imagePath;
-
-        }
-
-        $user->update();
-
-        return redirect("/profile{$user->id}")->with('success', 'Uspješno ste uredili svoje informacije.');
-
-    }
-    */
-
     public function editrole(User $user)
     {
        if(auth()->user()->role != "Superadmin"){
