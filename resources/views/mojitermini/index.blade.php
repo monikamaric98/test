@@ -26,7 +26,7 @@
                                 <!--http://onpoint.test/search?search=-->
                                 <a href=" http://pzi082022.studenti.sumit.sum.ba/search?search={{$n->naziv}}" class="h3">
                                     {{ $n->naziv }} <br>
-                                </a>        http://pzi082022.studenti.sumit.sum.ba/search?search=
+                                </a>
                             @endforeach
                                 @else
                                 Nemate ni jedan salon. Dodajte ovdje: <br>
